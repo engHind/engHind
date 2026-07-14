@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hind Alkhalidi — Computer Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --blue-deep:#0a2540;
+    --blue-mid:#0f3255;
+    --blue-panel:#123a5c;
+    --line:#2f6690;
+    --line-dim:#1c4468;
+    --paper:#eaf2f8;
+    --paper-dim:#8fa8bd;
+    --copper:#d98e4a;
+    --copper-bright:#f2a868;
+    --display:'Big Shoulders Display', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+    --body:'IBM Plex Sans', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--blue-deep);color:var(--paper);font-family:var(--body);position:relative;}
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(var(--line-dim) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-dim) 1px, transparent 1px);
+    background-size:80px 80px;
+    opacity:.4;
+  }
+  .crop{position:fixed;width:22px;height:22px;border:1.5px solid var(--copper);z-index:60;opacity:.85;pointer-events:none;}
+  .crop.tl{top:14px;left:14px;border-right:none;border-bottom:none;}
+  .crop.tr{top:14px;right:14px;border-left:none;border-bottom:none;}
+  .crop.bl{bottom:14px;left:14px;border-right:none;border-top:none;}
+  .crop.br{bottom:14px;right:14px;border-left:none;border-top:none;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 32px;position:relative;z-index:1;}
+  ::selection{background:var(--copper);color:var(--blue-deep);}
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,37,64,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-dim);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .logo{font-family:var(--mono);font-size:13px;letter-spacing:1px;color:var(--copper);}
+  .logo span{color:var(--paper-dim);}
+  nav ul{list-style:none;display:flex;gap:26px;}
+  nav a{color:var(--paper-dim);text-decoration:none;font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;transition:color .2s;}
+  nav a:hover{color:var(--copper);}
+  header.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:60px;position:relative;}
+  .doc-tag{font-family:var(--mono);font-size:12px;color:var(--paper-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:22px;display:flex;gap:10px;align-items:center;}
+  .doc-tag i{color:var(--copper);}
+  h1.name{font-family:var(--display);font-weight:800;font-size:clamp(56px,11vw,128px);line-height:.88;letter-spacing:-1px;text-transform:uppercase;color:var(--paper);}
+  h1.name .accent{color:transparent;-webkit-text-stroke:1.5px var(--copper);}
+  .role{font-family:var(--mono);font-size:clamp(13px,2vw,16px);color:var(--copper);letter-spacing:2px;text-transform:uppercase;margin-top:20px;}
+  .title-block{margin-top:56px;border:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);max-width:640px;}
+  .title-block div{padding:12px 16px;border-right:1px solid var(--line);border-top:1px solid var(--line);}
+  .title-block div:last-child{border-right:none;}
+  .title-block .tlabel{font-family:var(--mono);font-size:9.5px;color:var(--paper-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+  .title-block .tvalue{font-family:var(--mono);font-size:13px;color:var(--paper);}
+  .hero-cta{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;}
+  .btn{font-family:var(--mono);font-size:13px;letter-spacing:.5px;padding:13px 24px;text-decoration:none;border:1px solid var(--line);color:var(--paper);text-transform:uppercase;transition:.25s;}
+  .btn.primary{background:var(--copper);border-color:var(--copper);color:var(--blue-deep);font-weight:600;}
+  .btn.primary:hover{background:var(--copper-bright);border-color:var(--copper-bright);}
+  .btn.ghost:hover{border-color:var(--copper);color:var(--copper);}
+  .section{padding:110px 0;border-top:1px solid var(--line-dim);}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:50px;}
+  .sec-num{font-family:var(--mono);color:var(--copper);font-size:13px;}
+  .sec-title{font-family:var(--display);font-size:38px;font-weight:700;text-transform:uppercase;letter-spacing:-.5px;}
+  .about-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:50px;}
+  .about-grid p{color:var(--paper-dim);font-size:16.5px;line-height:1.85;}
+  .about-grid p b{color:var(--paper);font-weight:600;}
+  .specs{border:1px solid var(--line);}
+  .spec-row{display:flex;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);}
+  .spec-row:last-child{border-bottom:none;}
+  .spec-row .k{color:var(--paper-dim);font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;}
+  .spec-row .v{color:var(--copper);font-size:15px;font-weight:600;}
+  .legend{display:flex;flex-direction:column;border:1px solid var(--line);}
+  .legend-row{display:grid;grid-template-columns:60px 40px 1fr;align-items:center;border-bottom:1px solid var(--line-dim);transition:background .2s;}
+  .legend-row:last-child{border-bottom:none;}
+  .legend-row:hover{background:var(--blue-panel);}
+  .legend-row .idx{font-family:var(--mono);color:var(--copper);font-size:12px;padding:16px;border-right:1px solid var(--line-dim);}
+  .legend-row .ic{font-size:16px;color:var(--copper);text-align:center;}
+  .legend-row .lbl{font-family:var(--mono);font-size:14.5px;padding:16px;color:var(--paper);}
+  .sheet{border:1px solid var(--line);margin-bottom:24px;position:relative;transition:border-color .25s;}
+  .sheet:hover{border-color:var(--copper);}
+  .sheet-top{padding:26px 28px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+  .sheet-id{font-family:var(--mono);font-size:11px;color:var(--paper-dim);letter-spacing:1px;margin-bottom:10px;}
+  .sheet-title{font-family:var(--display);font-size:24px;font-weight:700;text-transform:uppercase;display:flex;align-items:center;gap:12px;}
+  .sheet-title i{color:var(--copper);font-size:20px;}
+  .stamp{width:64px;height:64px;border:2px solid var(--copper);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transform:rotate(-8deg);color:var(--copper);font-family:var(--mono);font-size:10px;text-align:center;line-height:1.2;text-transform:uppercase;font-weight:600;}
+  .chevron{color:var(--paper-dim);font-size:13px;transition:transform .3s;margin-top:6px;}
+  .sheet.open .chevron{transform:rotate(180deg);color:var(--copper);}
+  .sheet-body{max-height:0;overflow:hidden;transition:max-height .4s ease;border-top:1px solid transparent;}
+  .sheet.open .sheet-body{max-height:220px;border-top:1px solid var(--line-dim);}
+  .sheet-body p{padding:22px 28px;color:var(--paper-dim);font-size:15px;line-height:1.8;}
+  .contact-section{text-align:center;}
+  .contact-section .sec-head{justify-content:center;}
+  .contact-section > .wrap > p{color:var(--paper-dim);max-width:480px;margin:0 auto;font-size:15.5px;line-height:1.7;}
+  .contact-icons{display:flex;justify-content:center;gap:18px;margin-top:40px;}
+  .icon-btn{width:58px;height:58px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--paper);font-size:20px;text-decoration:none;transition:.25s;}
+  .icon-btn:hover{border-color:var(--copper);color:var(--copper);transform:translateY(-4px);}
+  footer{padding:36px 0 60px;text-align:center;color:var(--paper-dim);font-family:var(--mono);font-size:11.5px;letter-spacing:.5px;border-top:1px solid var(--line-dim);}
+  @media(max-width:720px){
+    .about-grid{grid-template-columns:1fr;}
+    .title-block{grid-template-columns:repeat(2,1fr);}
+    nav ul li:nth-child(1),nav ul li:nth-child(2){display:none;}
+    .crop{width:14px;height:14px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="crop tl"></div><div class="crop tr"></div><div class="crop bl"></div><div class="crop br"></div>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">HA<span>—SHEET.INDEX</span></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="doc-tag"><i class="fa-solid fa-compass-drafting"></i>Technical Profile — Rev. 01</div>
+    <h1 class="name">Hind<br><span class="accent">Alkhalidi</span></h1>
+    <div class="role">Computer Engineer · IoT &amp; Embedded Systems</div>
+
+    <div class="title-block">
+      <div><div class="tlabel">Institution</div><div class="tvalue">Taif University</div></div>
+      <div><div class="tlabel">GPA</div><div class="tvalue">3.77 / 4.00</div></div>
+      <div><div class="tlabel">Focus</div><div class="tvalue">IoT / Embedded</div></div>
+      <div><div class="tlabel">Sheet</div><div class="tvalue">01 of 01</div></div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#projects" class="btn primary">View Projects</a>
+      <a href="#contact" class="btn ghost">Get in Touch</a>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><span class="sec-title">About</span></div>
+    <div class="about-grid">
+      <p>Computer Engineering student at <b>Taif University</b>, passionate about building innovative solutions through <b>Internet of Things (IoT)</b> and <b>Embedded Systems</b>. I enjoy turning ideas into practical applications and continuously expanding my knowledge through hands-on projects and emerging technologies. Eager to contribute to impactful engineering projects while developing my technical, problem-solving, and teamwork skills.</p>
+      <div class="specs">
+        <div class="spec-row"><span class="k">GPA</span><span class="v">3.77 / 4.00</span></div>
+        <div class="spec-row"><span class="k">Projects</span><span class="v">03</span></div>
+        <div class="spec-row"><span class="k">Hackathon</span><span class="v">3rd Place</span></div>
+        <div class="spec-row"><span class="k">Status</span><span class="v">Open to Work</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-title">Skills</span></div>
+    <div class="legend">
+      <div class="legend-row"><span class="idx">01</span><span class="ic"><i class="fa-solid fa-database"></i></span><span class="lbl">SQL — Database Design &amp; Queries</span></div>
+      <div class="legend-row"><span class="idx">02</span><span class="ic"><i class="fa-solid fa-code"></i></span><span class="lbl">C++ — Systems &amp; Firmware Programming</span></div>
+      <div class="legend-row"><span class="idx">03</span><span class="ic"><i class="fa-brands fa-python"></i></span><span class="lbl">Python — Automation &amp; Data Analysis</span></div>
+      <div class="legend-row"><span class="idx">04</span><span class="ic"><i class="fa-solid fa-microchip"></i></span><span class="lbl">Embedded Hardware — Sensors &amp; Circuits</span></div>
+      <div class="legend-row"><span class="idx">05</span><span class="ic"><i class="fa-solid fa-diagram-project"></i></span><span class="lbl">MATLAB / Simulink — Control Systems</span></div>
+      <div class="legend-row"><span class="idx">06</span><span class="ic"><i class="fa-solid fa-satellite-dish"></i></span><span class="lbl">IoT Systems — Connected Devices</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><span class="sec-title">Projects</span></div>
+
+    <div class="sheet" onclick="this.classList.toggle('open')">
+      <div class="sheet-top">
+        <div>
+          <div class="sheet-id">SHEET 01/03 — MEDICAL / BIOMEDICAL</div>
+          <div class="sheet-title"><i class="fa-solid fa-wave-square"></i>Heart Rate Monitoring System</div>
+        </div>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </div>
+      <div class="sheet-body"><p>Designed and developed a real-time heart rate monitoring system using embedded hardware and sensors to measure and display users' heart rates accurately. Focused on reliable physiological data acquisition, signal processing, and continuous monitoring for potential healthcare applications.</p></div>
+    </div>
+
+    <div class="sheet" onclick="this.classList.toggle('open')">
+      <div class="sheet-top">
+        <div>
+          <div class="sheet-id">SHEET 02/03 — CONTROL SYSTEMS</div>
+          <div class="sheet-title"><i class="fa-solid fa-helicopter"></i>3DOF Helicopter Controller</div>
+        </div>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </div>
+      <div class="sheet-body"><p>Designed and implemented a controller for a three-degree-of-freedom (3DOF) helicopter using MATLAB/Simulink — modeling the system, tuning the controller for stable trajectory tracking, minimizing control error, and optimizing performance under real constraints.</p></div>
+    </div>
+
+    <div class="sheet" onclick="this.classList.toggle('open')">
+      <div class="sheet-top">
+        <div>
+          <div class="sheet-id">SHEET 03/03 — AGRITECH / AI</div>
+          <div class="sheet-title"><i class="fa-solid fa-seedling"></i>Rowayan — AI Rose Disease Detection</div>
+        </div>
+        <div class="stamp">3RD<br>PLACE</div>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </div>
+      <div class="sheet-body"><p>Developed an AI-powered solution for early detection of rose diseases using image analysis and machine learning, improving diagnostic accuracy and reducing agricultural losses. Includes a mobile app giving farmers instant results — 3rd Place, World Roses and Aromatic Plants Hackathon.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact-section" id="contact">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><span class="sec-title">Contact</span></div>
+    <p>Open to engineering opportunities, collaborations, and conversations about IoT &amp; embedded systems.</p>
+    <div class="contact-icons">
+      <a class="icon-btn" href="https://www.linkedin.com/in/hind-alkhalidi-812778300" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a class="icon-btn" href="https://wa.me/966508219081" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      <a class="icon-btn" href="https://github.com/engHind" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    </div>
+  </div>
+</section>
+
+<footer>DRAWN BY H. ALKHALIDI — © 2026 — ALL SYSTEMS NOMINAL</footer>
+
+</body>
+</html>
