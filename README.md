@@ -18,3 +18,6 @@ Heart Rate Monitoring System — An Arduino-based heart rate monitoring project.
 Software project management, version control, and practical AI development.
 # Connect with Me
 [LinkedIn](https://www.linkedin.com/in/hind-al-khalidi-812778300?utm_source=share_via&utm_content=profile&utm_medium=member_ios)· [X](https://x.com/veopiw?s=21)
+<p align="center">
+  <img src="./enghind_arcade_lock.gif" width="720" alt="EngHind Arcade Lock Animation">
+</p>
